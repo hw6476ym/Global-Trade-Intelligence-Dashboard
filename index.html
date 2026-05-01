@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Supply Chain Intelligence Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Separate project • Company-level intelligence</p>
+      <h1>Company Supply Chain Intelligence Dashboard</h1>
+      <p class="subtitle">Compare major companies by supplier concentration, regional exposure, critical inputs, logistics pressure, and overall supply-chain risk.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card controls">
+      <label>
+        Company
+        <select id="companySelect"></select>
+      </label>
+      <label>
+        Sector filter
+        <select id="sectorSelect"></select>
+      </label>
+      <label>
+        Risk view
+        <select id="riskMetricSelect">
+          <option value="riskScore">Overall Risk Score</option>
+          <option value="supplierConcentration">Supplier Concentration</option>
+          <option value="chinaTaiwanExposure">China/Taiwan Exposure</option>
+          <option value="criticalInputRisk">Critical Input Risk</option>
+          <option value="logisticsRisk">Logistics Risk</option>
+          <option value="inventoryWeakness">Inventory Weakness</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="card kpi"><span>Overall risk</span><strong id="kpiRisk">-</strong><small id="kpiRiskLabel">-</small></article>
+      <article class="card kpi"><span>Supplier concentration</span><strong id="kpiSupplier">-</strong><small>Higher = fewer key suppliers</small></article>
+      <article class="card kpi"><span>China/Taiwan exposure</span><strong id="kpiRegion">-</strong><small>Production and sourcing exposure</small></article>
+      <article class="card kpi"><span>Inventory buffer</span><strong id="kpiInventory">-</strong><small>Higher = stronger buffer</small></article>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <div class="section-title">
+          <h2 id="companyTitle">Company profile</h2>
+          <p id="companyMeta">-</p>
+        </div>
+        <div id="riskRadar" class="viz"></div>
+      </article>
+
+      <article class="card">
+        <div class="section-title">
+          <h2>Company risk ranking</h2>
+          <p>Sorts companies by the selected risk metric.</p>
+        </div>
+        <div id="rankingChart" class="viz"></div>
+      </article>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <div class="section-title">
+          <h2>Regional supply-chain exposure</h2>
+          <p>Estimated sourcing/production footprint by region.</p>
+        </div>
+        <div id="regionChart" class="viz small"></div>
+      </article>
+
+      <article class="card">
+        <div class="section-title">
+          <h2>Critical inputs</h2>
+          <p>Key bottleneck inputs for the selected company.</p>
+        </div>
+        <div id="inputsList" class="pill-list"></div>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Supplier network map</h2>
+        <p>Prototype view of company-to-supplier relationships and risk clusters.</p>
+      </div>
+      <div id="networkChart" class="viz network"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Decision table</h2>
+        <p>Use this to compare companies quickly and explain the supply-chain story in class.</p>
+      </div>
+      <div id="companyTable"></div>
+    </section>
+  </main>
+</body>
+</html>
